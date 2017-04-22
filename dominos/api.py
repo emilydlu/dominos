@@ -42,7 +42,7 @@ class Client:
     '''
     pass
 
-  BASE_URL = 'https://www.dominos.co.uk'
+  BASE_URL = 'https://www.dominos.com/en/'
 
   def __init__(self):
     self.session = requests.session()
@@ -59,9 +59,9 @@ class Client:
     :return Response: A response object.
     '''
     response = self.session.get(self.__url('/Home/SessionExpire'))
-
+    print response
     if response.status_code != 200:
-      raise ApiError('Failed to clear session: {}'.format(response.status_code))
+      raise ApiError('Failed: {}'.format(response.status_code))
 
     self.session = requests.session()
     self.session.headers.update({ 'content-type': 'application/json; charset=utf-8' })
